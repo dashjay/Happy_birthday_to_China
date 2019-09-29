@@ -1,7 +1,7 @@
 import sqlite3
 from flask import Flask, url_for, jsonify, render_template, request
-app = Flask(__name__, static_folder='dist',
-            static_url_path='', template_folder='dist')
+app = Flask(__name__, static_folder='static',
+            static_url_path='', template_folder='static')
 
 DATABASE = './app_info'
 
@@ -10,6 +10,12 @@ DATABASE = './app_info'
 def index():
     # url_for('static')
     return render_template('index.html')
+
+
+@app.route('/flag')
+def flag():
+    # url_for('static')
+    return render_template('flag.html')
 
 
 @app.route('/get_rank', methods=['POST'])
@@ -102,7 +108,7 @@ def distribution():
     province = cur.fetchall()
     data = []
     for i in province:
-        data.append({'province': i[0], 'num': get_num(i[0])[0][0]})
+        data.append({'name': i[0][0:2], 'value': get_num(i[0])[0][0]})
     return jsonify({'status': 1, 'data': data})
 
 
