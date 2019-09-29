@@ -24,11 +24,14 @@
     <!-- <bgsound src="guoge2.mp3" autostart="true" loop="true" hidden="true" /> -->
 
 
-    <audio id="audio1" controls="controls" autoplay="autoplay">
-        <!--    <source src="富士山下.mp3" type="audio/ogg">-->
-        <source src="https://verilog-1256941979.cos.ap-beijing.myqcloud.com/guoge2.mp3" type="audio/ogg">
-        Your browser does not support the audio tag.
+    <audio controls="controls" autoplay="autoplay" id="mp3Btn" style="display: none;">
+        <source src="https://verilog-1256941979.cos.ap-beijing.myqcloud.com/guoge2.mp3" type="audio/mp3" />
     </audio>
+
+    <div style="width: 50px;height: 50px; position: absolute; top: 20px;right: 10px;z-index: 100"
+        class="btn-audio rotateClass">
+        <img src="img/Music.png" style="    width: 50px;">
+    </div>
 
     <section id="mid">
         <div class="bcc">
@@ -56,6 +59,39 @@
     <script type="text/javascript" src="js/jQueryv1.7.2.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //播放完毕
+            $('#mp3Btn').on('ended', function () {
+                console.log("音频已播放完成");
+                $('.btn-audio').removeClass('rotateClass');
+            });
+            //播放器控制
+            var audio = document.getElementById('mp3Btn');
+            audio.volume = .3;
+            $('.btn-audio').click(function () {
+
+                event.stopPropagation();//防止冒泡
+                if (audio.paused) { //如果当前是暂停状态
+                    $('.btn-audio').addClass('rotateClass');
+                    audio.play(); //播放
+                    return;
+                } else {
+                    //当前是播放状态
+                    $('.btn-audio').removeClass('rotateClass');
+                    audio.pause(); //暂停''
+                }
+            });
+        });
+    </script>
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            document.getElementById('mp3Btn').play();
+            // document.getElementById('video').play(); 
+        }, false);
+    </script>
 
 </body>
 
