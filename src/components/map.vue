@@ -39,7 +39,15 @@ export default {
   },
   methods: {
     fighting() {
-      this.location();
+      var c = this.getCookie("up");
+      if (c == "b2s=") {
+        this.$Notice.error({
+          title: "你已经为祖国点亮了地图",
+          desc: "你已经为祖国点亮了地图,点击下方按钮前去升旗"
+        });
+      } else {
+        this.location();
+      }
     },
     // 获取当前用户的位置
     location() {
@@ -55,6 +63,7 @@ export default {
           console.log(rs.address); //地址信息
           self.address = rs.address;
           self.submit();
+          self.setCookie("up", "b2s=", 10);
         });
       });
     },
@@ -169,6 +178,27 @@ export default {
     },
     flag_up() {
       window.location.href = "/flag";
+    },
+    setCookie: function(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      var expires = "expires=" + d.toUTCString();
+      console.info(cname + "=" + cvalue + "; " + expires);
+      document.cookie = cname + "=" + cvalue + "; " + expires;
+      console.info(document.cookie);
+    },
+    getCookie: function(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        console.log(c);
+        while (c.charAt(0) == " ") c = c.substring(1);
+        if (c.indexOf(name) != -1) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
     }
   },
   computed: {}

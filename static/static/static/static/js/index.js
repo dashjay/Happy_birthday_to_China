@@ -30,16 +30,8 @@ function stopCount() {
   clearTimeout(time);
 }
 
-
-
-var flag = 0;
-
 // click2.addEventListener("touchstart",function(){
 function chan() {
-  if (flag == 0) {
-    var music = document.getElementById('audio1')
-    music.play();
-  }
   var img = $('.flag');
   //    if(toBack)clearTimeout(toBack);
   if (Bool) {
