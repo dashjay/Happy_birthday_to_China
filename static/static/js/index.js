@@ -10,6 +10,7 @@ height_end = $('.flag_g').offset().top;  //初位置
 distance_all = (height - height_end) / 15;
 
 
+
 $('header span').click(function() {
   history.go(-1);
 });
@@ -36,10 +37,6 @@ var flag = 0;
 
 // click2.addEventListener("touchstart",function(){
 function chan() {
-  if (flag == 0) {
-    var music = document.getElementById('audio1')
-    music.play();
-  }
   var img = $('.flag');
   //    if(toBack)clearTimeout(toBack);
   if (Bool) {

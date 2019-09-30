@@ -3,9 +3,9 @@
     <div class="echarts">
       <div style="height:400px;width:100%;padding-top: 50px" ref="myEchart"></div>
     </div>
-    <Button @click="fighting" style="margin-top:10px" type="warning" size="large">我也要为祖国加油</Button>
+    <Button @click="fighting" style="margin-top:10px" type="warning" size="large">我要为祖国点亮地图</Button>
     <div>
-      <Button @click="flag_up" class="test">我要去升旗</Button>
+      <Button @click="flag_up" class="test">点我去升旗</Button>
     </div>
   </div>
 </template>
