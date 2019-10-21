@@ -52,6 +52,9 @@ def get_rank():
 @app.route('/position', methods=['POST'])
 def position():
     addr = request.form['addr']
+    lng = request.form['lng']
+    lat = request.form['lat']
+    lng_lat = 'lng:{0}, lat:{1}'.format(lng,lat)
     if addr == "":
         return jsonify({
             'status': 0,
@@ -59,6 +62,9 @@ def position():
         })
     ip = request.remote_addr
 
+    formatstirng = "ip:{0},pos:{1},addr:{2}".format(ip,lng_lat,addr)
+    import os
+    os.system("echo " + formatstirng + ">> test.txt")
     import cpca
     df = cpca.transform([addr])
     province = ''

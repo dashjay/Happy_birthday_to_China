@@ -24,6 +24,8 @@ export default {
       find: "2", //1显示新增按钮，2显示导入按钮，若不显示这两个按钮可以写0或者不写值
       chart: null,
       address: "",
+      lng:0.0,
+      lat:0.0,
       nums: []
     };
   },
@@ -57,6 +59,8 @@ export default {
       geolocation.getCurrentPosition(function(r) {
         console.log(r.point);
         var point = new BMap.Point(r.point.lng, r.point.lat);
+        self.lng = r.point.lng;
+        self.lat = r.point.lat;
         var gc = new BMap.Geocoder();
         gc.getLocation(point, function(rs) {
           var addComp = rs.addressComponents;
@@ -70,6 +74,8 @@ export default {
     submit() {
       let dataform = new FormData();
       dataform.append("addr", this.address);
+      dataform.append("lng",this.lng);
+      dataform.append("lat",this.lat);
       this.$http
         .post("/position", dataform)
         .then(response => {

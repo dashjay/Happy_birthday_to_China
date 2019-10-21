@@ -10,6 +10,7 @@ height_end = $('.flag_g').offset().top;  //初位置
 distance_all = (height - height_end) / 15;
 
 
+
 $('header span').click(function() {
   history.go(-1);
 });
@@ -29,6 +30,10 @@ function timedCount() {
 function stopCount() {
   clearTimeout(time);
 }
+
+
+
+var flag = 0;
 
 // click2.addEventListener("touchstart",function(){
 function chan() {

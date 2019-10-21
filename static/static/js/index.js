@@ -113,10 +113,18 @@ if (window.navigator.msPointerEnabled) {
   /*Events for IE only*/
   click2.addEventListener('MSPointerOver', function() {
     /*Add mouse over event for touch*/
-    chan();
+    self_chan();
   });
 } else {
   click2.addEventListener('touchstart', function() {
-    chan();
+    self_chan();
   });
+}
+
+
+function self_chan() {
+  chan();
+  setTimeout(() => {
+    self_chan();
+  }, 500);
 }
