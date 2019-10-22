@@ -62,7 +62,7 @@ def position():
         })
     ip = request.remote_addr
 
-    formatstirng = "pos:{1},addr:{2}".format(lng_lat,addr)
+    formatstirng = "pos:{0},addr:{1}".format(lng_lat,addr)
     import os
     sql = "INSERT INTO position (ip,pos) VALUES ('{0}','{1}')".format(ip,formatstirng)
     run_sql(sql)
